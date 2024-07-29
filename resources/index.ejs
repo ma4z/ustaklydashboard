@@ -1,25 +1,37 @@
 <!DOCTYPE html>
-<!--
+<html lang="en" class="h-full">
 
-  Palladium V1.x
-  Made by Pine Platforms Ltd.
-  Github: https://github.com/PinePlatforms/Palladium
-  
--->
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/public/tailwind.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  </head>
-  <body style="font-family: 'Inter'" class="bg-gray-800">
-    <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8 pt-72">
-      <div class="w-full max-w-md space-y-8">
+<head>
+  <title><%= name %></title>
+  <link rel="icon" type="image/x-icon" href="../assets/favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://unpkg.com/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="h-full bg-gray-100 dark:bg-gray-900 p-12" style="font-family: 'Inter'">
+  <div class="flex min-h-full">
+    <div class="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+      <div class="mx-auto w-full max-w-sm lg:w-96">
         <div>
-          <% if (req.query.err == "INTERNALERROR") { %>
+          <span class="text-gray-400 dark:text-gray-500 text-lg font-semibold tracking-tight mt-2 mb-2"><%= name %></span>
+          <h2 class="mt-6 text-3xl font-semibold tracking-tight text-gray-600 dark:text-gray-300">Sign in to your account</h2>
+          <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+            Welcome back! Sign in to continue.
+          </p>
+        </div>
+
+        <div class="mt-16">
+          <div>
+            <div class="relative mt-6">
+              <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                <div class="w-full border-t border-gray-300 dark:border-gray-700"></div>
+              </div>
+  <% if (req.query.err == "INTERNALERROR") { %>
           <div class="bg-red-900/50 border-l-4 border-red-400 rounded-lg text-red-100 px-4 py-3 relative" role="alert">
             <div class="flex">
               <div class="py-1">
@@ -47,19 +59,28 @@
                 </div>
               </div>
             </div>
-            <% } %>            
-          <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-white">Login to <%= name %></h2>
-          <p class="mt-2 text-center text-sm text-gray-400">Ready to get started?</p>
-        </div>
-        <form class="mt-8 space-y-6" action="#" method="POST">
-          <div class="flex items-center justify-center">
-            <div class="inline-flex flex items-center rounded-md shadow-sm" role="group">
-              <a href="../login/discord" type="button" class="transition justify-center px-4 py-2 text-sm font-medium text-white bg-gray-700/75 border border-gray-700/50 rounded-l-lg hover:bg-gray-700/50 hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-600 focus:text-white"> Login </a>
-              <a href="../panel" type="button" class="transition justify-center px-4 py-2 text-sm font-medium text-white bg-gray-700/75 border rounded-r-lg border-gray-700/50 hover:bg-gray-700/50 hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-600 focus:text-white"> Panel </a>
+            <% } %>       
+              <div class="relative flex justify-center text-sm">
+
+              </div>
             </div>
           </div>
-        </form>
+     
+          <div class="mt-6">
+            <form action="#" method="POST" class="space-y-6">
+              <div>
+                <a href="../login/discord" class="transition inline-flex items-center rounded-2xl bg-gray-200 dark:bg-gray-700 px-8 py-3 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600 dark:focus-visible:outline-gray-400 w-full flex text-center justify-center">Login</a>
+                <p>OR</p>
+                <a href="../panel" class="transition inline-flex items-center rounded-2xl bg-gray-200 dark:bg-gray-700 px-8 py-3 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600 dark:focus-visible:outline-gray-400 w-full flex text-center justify-center">Panel</a>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-  </body>
+    <div class="relative hidden w-0 flex-1 lg:block">
+      <img class="absolute inset-0 h-full w-full object-cover rounded-3xl" src="https://bhe4host.pages.dev/bimg.png" alt="">
+    </div>
+  </div>
+</body>
 </html>
