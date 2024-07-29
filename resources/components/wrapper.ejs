@@ -1,0 +1,253 @@
+<!doctype html>
+<html class="h-full w-full">
+<head>
+  <title><%= name %></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/public/tailwind.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body style="font-family: 'IBM Plex Sans'" class="bg-[#141414] h-full w-full">
+<div>
+
+  <style>
+    .collapsed span {
+      display: none;
+    }
+    .collapsed p {
+      display: none;
+    }
+    .collapsed h1 {
+      display: none;
+    }
+
+    .collapsed .nav-link svg {
+      margin-right: 0;
+    }
+    .collapsed {
+      width: 4% !important;
+    }
+    .colcont {
+      padding-left: 4.2rem
+    }
+
+    .transition {
+      transition: all 0.3s ease-in-out;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const loader = document.getElementById('loader');
+        const content = document.getElementById('content');
+
+        setTimeout(() => {
+            loader.classList.add('opacity-0');
+            content.classList.remove('opacity-0');
+            
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 150);
+        }, 300);
+    });
+</script>
+  <!-- Static sidebar for desktop -->
+  <div class="sidebar transition hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-56 lg:flex-col">
+    <div class="flex grow flex-col gap-y-5 overflow-hidden bg-[#101010] border-r border-white/5">
+      <nav class="flex flex-1 flex-col">
+        <div class="pl-6 pt-5 pb-4 flex">
+          <a href="/" class="flex">
+
+            <h1 class="text-white font-medium tracking-tight text-lg"><%= name %></h1>
+          </a>
+        </div>
+        <ul role="list" class="flex flex-1 flex-col gap-y-7">
+          <li>
+            <ul role="list" class="-mx-2 space-y-1">
+              <li>
+                <a href="../dashboard" class="hover:scale-105 transition nav-link mt-1 text-neutral-400 px-4 mx-4 group flex gap-x-3 shadow-none py-2 rounded-lg shadow-sm text-sm leading-6 font-normal" searchdata="container instances servers Dashboard">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 mt-0.5 h-5">
+                    <path fill-rule="evenodd" d="M3 6a3 3 0 0 1 3-3h2.25a3 3 0 0 1 3 3v2.25a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm9.75 0a3 3 0 0 1 3-3H18a3 3 0 0 1 3 3v2.25a3 3 0 0 1-3 3h-2.25a3 3 0 0 1-3-3V6ZM3 15.75a3 3 0 0 1 3-3h2.25a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-2.25Zm9.75 0a3 3 0 0 1 3-3H18a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3h-2.25a3 3 0 0 1-3-3v-2.25Z" clip-rule="evenodd" />
+                  </svg>                                                
+                <span>Dashboard</span>
+                </a>
+                <a href="../create-server" searchdata="account profile <%= user.username %>" class="hover:scale-105 transition nav-link mt-1 text-neutral-400 px-4 mx-4 group flex gap-x-3 shadow-none py-2 rounded-lg shadow-sm text-sm leading-6 font-normal">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 mt-0.5 h-5">
+                    <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                  </svg>                                               
+                  <span>Create</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="../credentials" searchdata="admin overview control" class="hover:scale-105 transition nav-link mt-1 text-neutral-400 px-4 mx-4 group flex gap-x-3 shadow-none py-2 rounded-lg shadow-sm text-sm leading-6 font-normal">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 mt-0.5 h-5">
+                    <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
+                  </svg>                                                              
+                  <span>Account</span>
+                </a>
+              </li>
+              <li>
+                <a href="../store" searchdata="admin overview control" class="hover:scale-105 transition nav-link mt-1 text-neutral-400 px-4 mx-4 group flex gap-x-3 shadow-none py-2 rounded-lg shadow-sm text-sm leading-6 font-normal">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 mt-0.5 h-5">
+                    <path d="M5.223 2.25c-.497 0-.974.198-1.325.55l-1.3 1.298A3.75 3.75 0 0 0 7.5 9.75c.627.47 1.406.75 2.25.75.844 0 1.624-.28 2.25-.75.626.47 1.406.75 2.25.75.844 0 1.623-.28 2.25-.75a3.75 3.75 0 0 0 4.902-5.652l-1.3-1.299a1.875 1.875 0 0 0-1.325-.549H5.223Z" />
+                    <path fill-rule="evenodd" d="M3 20.25v-8.755c1.42.674 3.08.673 4.5 0A5.234 5.234 0 0 0 9.75 12c.804 0 1.568-.182 2.25-.506a5.234 5.234 0 0 0 2.25.506c.804 0 1.567-.182 2.25-.506 1.42.674 3.08.675 4.5.001v8.755h.75a.75.75 0 0 1 0 1.5H2.25a.75.75 0 0 1 0-1.5H3Zm3-6a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-.75.75h-3a.75.75 0 0 1-.75-.75v-3Zm8.25-.75a.75.75 0 0 0-.75.75v5.25c0 .414.336.75.75.75h3a.75.75 0 0 0 .75-.75v-5.25a.75.75 0 0 0-.75-.75h-3Z" clip-rule="evenodd" />
+                  </svg>                                                                               
+                  <span>Store</span>
+                </a>
+              </li>
+              <li>
+                <a href="../afk" class="hover:scale-105 transition nav-link mt-1 text-neutral-400 px-4 mx-4 group flex gap-x-3 shadow-none py-2 rounded-lg shadow-sm text-sm leading-6 font-normal">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 mt-0.5 h-5">
+                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z" clip-rule="evenodd" />
+                  </svg>                                              
+                  <span>AFK Page</span>
+                </a>
+              </li>
+              <li>
+                <a href="../panel" class="hover:scale-105 transition nav-link mt-1 text-neutral-400 px-4 mx-4 group flex gap-x-3 shadow-none py-2 rounded-lg shadow-sm text-sm leading-6 font-normal">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 mt-0.5 h-5">
+                    <path d="M21.721 12.752a9.711 9.711 0 0 0-.945-5.003 12.754 12.754 0 0 1-4.339 2.708 18.991 18.991 0 0 1-.214 4.772 17.165 17.165 0 0 0 5.498-2.477ZM14.634 15.55a17.324 17.324 0 0 0 .332-4.647c-.952.227-1.945.347-2.966.347-1.021 0-2.014-.12-2.966-.347a17.515 17.515 0 0 0 .332 4.647 17.385 17.385 0 0 0 5.268 0ZM9.772 17.119a18.963 18.963 0 0 0 4.456 0A17.182 17.182 0 0 1 12 21.724a17.18 17.18 0 0 1-2.228-4.605ZM7.777 15.23a18.87 18.87 0 0 1-.214-4.774 12.753 12.753 0 0 1-4.34-2.708 9.711 9.711 0 0 0-.944 5.004 17.165 17.165 0 0 0 5.498 2.477ZM21.356 14.752a9.765 9.765 0 0 1-7.478 6.817 18.64 18.64 0 0 0 1.988-4.718 18.627 18.627 0 0 0 5.49-2.098ZM2.644 14.752c1.682.971 3.53 1.688 5.49 2.099a18.64 18.64 0 0 0 1.988 4.718 9.765 9.765 0 0 1-7.478-6.816ZM13.878 2.43a9.755 9.755 0 0 1 6.116 3.986 11.267 11.267 0 0 1-3.746 2.504 18.63 18.63 0 0 0-2.37-6.49ZM12 2.276a17.152 17.152 0 0 1 2.805 7.121c-.897.23-1.837.353-2.805.353-.968 0-1.908-.122-2.805-.353A17.151 17.151 0 0 1 12 2.276ZM10.122 2.43a18.629 18.629 0 0 0-2.37 6.49 11.266 11.266 0 0 1-3.746-2.504 9.754 9.754 0 0 1 6.116-3.985Z" />
+                  </svg>                                               
+                  <span>Panel</span>
+                </a>
+              </li>
+              <% if (admin == true) { %>
+                <p class="pl-8 text-neutral-400 text-xs font-semibold pt-6 pb-2"><span>Admin Panel</span></p>
+              <li>
+                <a href="/admin/nodes" class="hover:scale-105 transition nav-link mt-1 text-neutral-400 px-4 mx-4 group flex gap-x-3 shadow-none py-2 rounded-lg shadow-sm text-sm leading-6 font-normal">            
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 mt-0.5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+                  </svg>                                
+                  <span>Admin</span>
+                </a>
+              </li>
+              <% } %>
+            </ul>
+          </li>
+          <!--<li>
+            <div class="text-xs font-semibold leading-6 text-neutral-400">Your teams</div>
+            <ul role="list" class="-mx-2 mt-2 space-y-1">
+              <li>
+                <a href="#" class="text-neutral-400 hover:text-white hover:bg-neutral-800 group flex gap-x-3 rounded-lg p-2 text-sm leading-6 font-semibold">
+                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-neutral-700 bg-neutral-800 text-[0.625rem] font-medium text-neutral-400 group-hover:text-white">H</span>
+                  <span class="truncate">Heroicons</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="text-neutral-400 hover:text-white hover:bg-neutral-800 group flex gap-x-3 rounded-lg p-2 text-sm leading-6 font-semibold">
+                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-neutral-700 bg-neutral-800 text-[0.625rem] font-medium text-neutral-400 group-hover:text-white">T</span>
+                  <span class="truncate">Tailwind Labs</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="text-neutral-400 hover:text-white hover:bg-neutral-800 group flex gap-x-3 rounded-lg p-2 text-sm leading-6 font-semibold">
+                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-neutral-700 bg-neutral-800 text-[0.625rem] font-medium text-neutral-400 group-hover:text-white">W</span>
+                  <span class="truncate">Workcation</span>
+                </a>
+              </li>
+            </ul>
+          </li> -->
+          <li class="mt-auto border-t border-white/5">
+            <a href="../logout" class="group -mx-2 flex gap-x-3 rounded-lg pl-6 py-4 text-sm font-medium leading-6 text-neutral-500 transition hover:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 mt-0.5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+              </svg>              
+              <span>Sign out</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+
+
+  
+  <div id="colcont" class="lg:pl-56">
+    <div class="sticky backdrop-blur top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 bg-transparent px-4 shadow-sm sm:gap-x-6 sm:px-4 lg:px-4">
+
+      <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+        <div class="relative flex flex-1 flex-col">
+          <input id="searchInput" 
+                 class="w-fit px-4 py-2 h-10 mt-3.5 rounded-lg text-white border border-white/5 hover:scale-105 active:scale-100 duration-200 bg-transparent border border-white/5 pr-0 text-white placeholder:text-zinc-500 focus:ring-0 sm:text-sm" 
+                 placeholder="Search..." 
+                 type="search" 
+                 name="search"
+                 autocomplete="off"
+                 onfocus="showSearchResults()">
+
+            <div id="searchResults" class="absolute bg-white w-[12.5rem] rounded-lg shadow-lg hidden mt-16 px-2 pb-2">
+             
+          </div> 
+      </div>
+        <script src="/public/search.js"></script>
+        <script>
+          function showSearchResults() {
+              var searchResults = document.getElementById('searchResults');
+              searchResults.classList.remove('hidden');
+          }
+      
+          // Optional: Verstecke die Suchergebnisse, wenn der Benutzer woanders klickt
+          document.addEventListener('click', function(event) {
+              var searchInput = document.getElementById('searchInput');
+              var searchResults = document.getElementById('searchResults');
+              
+              // Wenn das geklickte Element nicht das Suchfeld oder die Suchergebnisse sind
+              if (!searchInput.contains(event.target) && !searchResults.contains(event.target)) {
+                  searchResults.classList.add('hidden');
+              }
+          });
+      </script>
+      
+        <div class="flex items-center gap-x-4 lg:gap-x-6">
+          <!-- Profile dropdown -->
+          <div class="relative mt-3 mr-4">
+            <button type="button" class="-m-1.5 flex items-center p-1.5" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+              <img class="h-8 w-8 rounded-full bg-transparent" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" alt="">
+              <span class="hidden lg:flex lg:items-center">
+                <span class="text-sm font-semibold leading-6 text-white ml-2" aria-hidden="true"><%= user.username %> <span class="font-mono text-xs text-zinc-300 font-normal"></span></span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          var currentPageUrl = window.location.pathname;
+      
+          // Get all navigation links
+          var navLinks = document.querySelectorAll('.nav-link');
+      
+          // Loop through each navigation link
+          navLinks.forEach(function(link) {
+            // Get the href attribute of the link
+            var linkUrl = link.getAttribute('href');
+      
+            // Check if the current page URL contains the link URL
+            if (currentPageUrl === linkUrl) {
+              // Remove all existing classes
+              link.className = 'nav-link';
+      
+              // Add the specified classes
+              link.classList.add(
+                'hover:scale-105', 'transition', 'bg-[#171717]', 'text-white', 'mt-1', 'pl-4', 'mx-4', 'group', 'flex', 'gap-x-3', 'shadow-sm', 'rounded-lg', 'py-2', 'text-sm', 'leading-6', 'font-semibold',
+              );
+            }
+          });
+        });
+      </script>
+        <div id="loader" class="fixed ml-56 mt-16 inset-0 flex items-center justify-center bg-[#141414] transition-opacity duration-300 opacity-100 z-50">
+          <svg class="animate-spin h-5 w-5 text-white inline-flex"
+          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+             stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor"
+             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+          </path>
+       </svg>
+        
+        </div>
