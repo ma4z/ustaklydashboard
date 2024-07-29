@@ -79,8 +79,9 @@ const init = async () => {
           console.error('Error reading the ASCII art file:', err);
           return;
       }
-      console.log(data);
+      console.error(data);
   });
+  console.warn('Ustakly is Started')
 
 
   const allRoutes = fs.readdirSync('./app');
