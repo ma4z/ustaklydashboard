@@ -1,9 +1,9 @@
-![image](https://github.com/OvernodeProjets/Fixed-Palladium/assets/73477238/e864f37f-e570-4d60-bb80-b0b7b4fc1618)
-![image](https://github.com/OvernodeProjets/Fixed-Palladium/assets/73477238/2fcdb76a-459e-4e7c-8c16-e53ff20a4f27)
+
+![image](https://github.com/user-attachments/assets/3cbd28b7-d04a-4072-9d3c-691c3155dfac)
 
 <hr>
 
-# PalPod
+# Ustakly
 
 All features:
 - Resource Management (Use it to create servers, gift them, etc)
@@ -17,12 +17,12 @@ All features:
 
 <br>
 
-| :exclamation:  This is an extremely early version of PalPod and doesn't have all of features we want to add yet                                   |
+| :exclamation:  This is an extremely early version of Ustakly  and doesn't have all of features we want to add yet                                   |
 |------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 <br>
 
-| :warning:  PalPod currently doesn't encrypt user passwords. This will be fixed in 1.0.1, but for now, just don't leak your database.sqlite.       |
+| :warning:  Ustakly  currently doesn't encrypt user passwords. This will be fixed in 1.0.1, but for now, just don't leak your database.sqlite.       |
 |------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 <hr>
