@@ -7,6 +7,7 @@ const path = require('path');
 const axios = require('axios');
 const ipaddr = require('ipaddr.js');
 const requestIp = require('request-ip');
+const ascii = fs.readFileSync('./function/ascii.txt', 'utf8'); 
 require('dotenv').config();
 
 const app = express();
@@ -70,6 +71,18 @@ const init = async () => {
     next();
   });
 
+  const asciiFilePath = path.join(__dirname, 'ascii.txt');
+
+  // Read the file asynchronously
+  fs.readFile(asciiFilePath, 'utf8', (err, data) => {
+      if (err) {
+          console.error('Error reading the ASCII art file:', err);
+          return;
+      }
+      console.log(data);
+  });
+
+
   const allRoutes = fs.readdirSync('./app');
   allRoutes.forEach(routeFile => {
     const route = require(`./app/${routeFile}`);
@@ -80,7 +93,7 @@ const init = async () => {
 
   const port = process.env.APP_PORT || 3000;
   app.listen(port, () => {
-    console.log(`PalPod has been started on ${process.env.APP_URL || `http://localhost:${port}`}!`);
+    console.log(`${process.env.APP_NAME} has been started on ${process.env.APP_URL || `http://localhost:${port}`}!`);
   });
 };
 
