@@ -33,13 +33,13 @@ All features:
 :Warning: You need Skyport already set up on a domain for PalPod to work
 
 
-1. Install Dependencies
+## 1. Install Dependencies
 ```bash
 sudo apt update
 sudo apt install nodejs npm git
 ```
 
-2. Install Ustakly
+## 2. Install Ustakly
 ```bash
 cd /etc
 git clone https://github.com/mtq4/ustaklydashboard.git
@@ -48,7 +48,7 @@ npm install
 
 __Then You Need to Configure the Skyport URL And Api-Key in .env if you dont find .env file rename the .env_example to .env then add all Following Things like discord oauth2 and skyport url / api key__
 
-3. Start Ustakly
+## 3. Start Ustakly
 ```bash
 npm run start
 ```
