@@ -80,7 +80,7 @@
     "Image": "quay.io/skyport/nodejs:lts",
     "Cmd": "",
     "Env": [
-      "START=npm install && npm start"
+      "START=npm install && node ."
     ],
     "Scripts": {
       "Install": [
