@@ -7,183 +7,151 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'IBM Plex Sans';
+      background: url('https://bhe4host.pages.dev/bimg.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .glow {
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    .spinner {
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top: 4px solid white;
+      width: 24px;
+      height: 24px;
+      animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+  <script>
+    function showSpinner(buttonId) {
+      const button = document.getElementById(buttonId);
+      const buttonText = button.querySelector('.button-text');
+      const spinner = button.querySelector('.spinner');
+      buttonText.classList.add('hidden');
+      spinner.classList.remove('hidden');
+    }
+  </script>
 </head>
-<body style="font-family: 'IBM Plex Sans'" class="bg-[#181818] h-full">
-<div class="min-h-full flex">
-  <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-    <div class="mx-auto w-full max-w-sm lg:w-96">
-      <div>
-        <h2 class=" text-3xl font-semibold text-white">Sign in to <%= name %></h2>
-        <p class="mt-2 text-sm text-neutral-500">
-    <% if (req.query.err == "INTERNALERROR") { %>
-          <div class="bg-red-900/50 border-l-4 border-red-400 rounded-lg text-red-100 px-4 py-3 relative" role="alert">
-            <div class="flex">
-              <div class="py-1">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-400 mr-3">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                </svg>
-              </div>
-              <div>
-                <p class="font-bold">Internal Server Error</p>
-                <p class="text-sm relative">PalPod couldn't process the action due to an internal issue.</p>
-              </div>
+<body class="bg-[#181818] h-full flex items-center justify-center">
+  <div class="flex-1 flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-20 xl:px-24 glow bg-[#00000080] rounded-lg">
+    <div class="w-full max-w-md">
+      <h2 class="text-3xl font-semibold text-white">Sign in to <%= name %></h2>
+      <p class="mt-2 text-sm text-neutral-500">Please select OAuth2 Providers.</p>
+
+      <% if (req.query.err == "INTERNALERROR") { %>
+        <div class="bg-red-900/50 border-l-4 border-red-400 rounded-lg text-red-100 px-4 py-3 relative" role="alert">
+          <div class="flex">
+            <div class="py-1">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-400 mr-3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-bold">Internal Server Error</p>
+              <p class="text-sm relative">PalPod couldn't process the action due to an internal issue.</p>
             </div>
           </div>
-          <% } %> <% if (req.query.err == "BANNED") { %>
-            <div class="bg-red-900/50 border-l-4 border-red-400 rounded-lg text-red-100 px-4 py-3 relative" role="alert">
-              <div class="flex">
-                <div class="py-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-400 mr-3">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                  </svg>
-                </div>
-                <div>
-                  <p class="font-bold">Your account has been banned</p>
-                  <p class="text-sm relative">You were banned for this reason: <%= req.query.reason %></p>
-                </div>
-              </div>
+        </div>
+      <% } %>
+
+      <% if (req.query.err == "BANNED") { %>
+        <div class="bg-red-900/50 border-l-4 border-red-400 rounded-lg text-red-100 px-4 py-3 relative" role="alert">
+          <div class="flex">
+            <div class="py-1">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-400 mr-3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+              </svg>
             </div>
-            <% } %>
-            <p class="mt-2 text-sm text-neutral-500">
-              Please Select Oauth2 Providers.
-            </p>
-      </div>
+            <div>
+              <p class="font-bold">Your account has been banned</p>
+              <p class="text-sm relative">You were banned for this reason: <%= req.query.reason %></p>
+            </div>
+          </div>
+        </div>
+      <% } %>
 
       <div class="mt-8">
-        <div class="mt-6">
-          <form id="login-form" class="space-y-6" onsubmit="event.preventDefault(); submitForm();">
-            <div>
-      
-            
+        <form id="login-form" class="space-y-6" onsubmit="event.preventDefault(); submitForm();">
+          <div>
+            <a href="/login/discord" id="login-button" class="w-full cursor-pointer flex transition justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-800 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-500" onclick="showSpinner('login-button')">
+              <span class="button-text">Login Using Discord</span>
+              <div class="spinner hidden"></div>
+            </a>
+          </div>
+          <div>
+            <a href="/panel" class="w-full cursor-pointer flex transition justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-neutral-800 bg-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-500">Panel</a>
+          </div>
+
+          <% if (settings.register) { %>
+          <div class="mt-6 text-sm text-neutral-500 text-center py-[-50px] translate-y-[-70%]">
+            Don't have an account? <a href="/register" class="font-normal text-neutral-500 hover:text-white transition hover:scale-105">Create one</a>
+          </div>
+          <% } %>
+
+          <% if (req.query.err && req.query.err == "InvalidCredentials") { %>
+            <div class="mt-2"></div>
+            <span class="text-amber-600 pt-4 font-normal text-sm">Invalid credentials. Please try again.</span>
+          <% } %>
+
+          <% if (req.query.err && req.query.err == "UpdatedCredentials") { %>
+            <div class="mt-2"></div>
+            <span class="text-emerald-600 pt-8 font-normal text-sm">Your account has been updated, please enter your new credentials.</span>
+          <% } %>
+
+          <% if (req.query.msg && req.query.msg == "EmailVerified") { %>
+            <div class="mt-2"></div>
+            <span class="text-emerald-600 pt-8 font-normal text-sm">Your account has been Verified, you can login now.</span>
+          <% } %>
+
+          <% if (req.query.msg && req.query.msg == "InvalidVerificationToken") { %>
+            <div class="mt-2"></div>
+            <span class="text-amber-600 pt-4 font-normal text-sm">Your verification link invalid or expire, please try again.</span>
+          <% } %>
+
+          <% if (req.query.msg && req.query.msg == "VerificationEmailResent") { %>
+            <div class="mt-2"></div>
+            <span class="text-emerald-600 pt-8 font-normal text-sm">Your verification link resent successfully, check your email.</span>
+          <% } %>
+
+          <% if (req.query.msg && req.query.msg == "UserNotFound") { %>
+            <div class="mt-2"></div>
+            <span class="text-amber-600 pt-4 font-normal text-sm">User not found, please try again.</span>
+          <% } %>
+
+          <% if (req.query.msg && req.query.msg == "UserAlreadyVerified") { %>
+            <div class="mt-2"></div>
+            <span class="text-amber-600 pt-4 font-normal text-sm">Account already verified, you can login now.</span>
+          <% } %>
+
+          <% if (req.query.msg && req.query.msg == "VerificationEmailSent") { %>
+            <div class="mt-2"></div>
+            <span class="text-emerald-600 pt-8 font-normal text-sm">Verification email sent successfully, check your email.</span>
+            <div class="text-center mt-2">
+              <a class="text-sm font-normal text-neutral-500 transition hover:text-white" href="/verify/resend?email=<%= req.query.email %>">Resend Verification Email</a>
             </div>
+          <% } %>
 
-            <div class="space-y-1">
-            </div>
-
-            <div class="flex items-center justify-between">
-
-            </div>
-
-            <div>
-              <a href="/login/discord" class="w-full cursor-pointer flex transition justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-800 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-500">Login Using Discord</a>
-            </div>
-            <div>
-              <a href="/panel" class="w-full cursor-pointer flex transition justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-neutral-800 bg-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-500">Panel</a>
-            </div>
-            
-            <% if (settings.register) { %>
-            <!-- <div class="text-center mt-4">
-              <a href="/register" class="w-full cursor-pointer flex transition justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-emerald-500 hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">Register</a>
-            </div> -->
-
-            <div class=" mt-6 text-sm text-neutral-500 text-center py-[-50px] translate-y-[-70%]">
-              <!-- <a href="/register" class="font-normal text-neutral-500 hover:text-white transition hover:scale-105">Don't have an account? Create one!</a> -->
-              Don't have an account? <a href="/register" class="font-normal text-neutral-500 hover:text-white transition hover:scale-105">Create one</a>
-            </div>
-            <% } %>
-
-            <% if (req.query.err && req.query.err == "InvalidCredentials") { %>
-              <div class="mt-2"></div>
-              <span class="text-amber-600 pt-4 font-normal text-sm">Invalid credentials. Please try again.</span>
-            <% } %>
-
-            <% if (req.query.err && req.query.err == "UpdatedCredentials") { %>
-              <div class="mt-2"></div>
-              <span class="text-emerald-600 pt-8 font-normal text-sm">Your account has been updated, please enter your new credentials.</span>
-            <% } %>
-
-            <% if (req.query.msg && req.query.msg == "EmailVerified") { %>
-              <div class="mt-2"></div>
-              <span class="text-emerald-600 pt-8 font-normal text-sm">Your account has been Verified, you can login now.</span>
-            <% } %>
-            <% if (req.query.msg && req.query.msg == "InvalidVerificationToken") { %>
-              <div class="mt-2"></div>
-              <span class="text-amber-600 pt-4 font-normal text-sm">Your verification link invalid or expire, please try again.</span>
-            <% } %>
-            <% if (req.query.msg && req.query.msg == "VerificationEmailResent") { %>
-              <div class="mt-2"></div>
-              <span class="text-emerald-600 pt-8 font-normal text-sm">Your verification link resent successfully, check your email.</span>
-            <% } %>
-            <% if (req.query.msg && req.query.msg == "UserNotFound") { %>
-              <div class="mt-2"></div>
-              <span class="text-amber-600 pt-4 font-normal text-sm">User not found, please try again.</span>
-            <% } %>
-            <% if (req.query.msg && req.query.msg == "UserAlreadyVerified") { %>
-              <div class="mt-2"></div>
-              <span class="text-amber-600 pt-4 font-normal text-sm">User Already Verified, Login With Your Account.</span>
-            <% } %>
-            <% if (req.query.msg && req.query.msg == "AccountcreateEmailSent") { %>
-              <div class="mt-2"></div>
-              <span class="text-emerald-600 pt-8 font-normal text-sm">Your Account successfully create and please check your email for verify your account.</span>
-            <% } %>
-            <% if (req.query.msg && req.query.msg == "AccountCreated") { %>
-              <div class="mt-2"></div>
-              <span class="text-emerald-600 pt-8 font-normal text-sm">Your Account successfully create, login with your username/email and password.</span>
-            <% } %>
-            <% if (req.query.err && req.query.err === "UserNotVerified") { %>
-              <div class="mt-6 text-center">
-                <p class="text-red-500 text-lg font-semibold mb-2">Oops! Your Account Isn't Verified Yet.</p>
-                <p class="text-white text-sm mb-4">Please verify your account to proceed.</p>
-                <a href="/resend-verification" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 inline-block">
-                  Click Here to Resend Verification Email
-                </a>
-              </div>
-            <% } %>                                                                                 
-
-            <% if (req.query.msg && req.query.msg === 'PasswordReset') { %>
-              <% if (req.query.state && req.query.state === 'success') { %>
-                <span class="text-emerald-600 pt-8 font-normal text-sm">Your password has been successfully updated.</span>
-              <% } else if (req.query.state && req.query.state === 'failed') { %>
-                <span class="text-red-500 pt-4 font-normal text-sm">Password reset failed. Please try again.</span>
-              <% } %>
-            <% } %>
-          </form>
-        </div>
+          <div class="pt-2"></div>
+        </form>
       </div>
     </div>
   </div>
-  <div class="hidden lg:block relative w-0 flex-1">
-    <img class="absolute inset-0 h-full w-full object-cover" src="https://bhe4host.pages.dev/bimg.png" alt="">
-  </div>
-</div>
-
-<script>
-  async function submitForm() {
-    let username = encodeURIComponent(document.getElementById("username").value);
-    let password = encodeURIComponent(document.getElementById("password").value);
-    document.location.href = `/auth/login?username=${username}&password=${password}`;
-  }
-  
-  document.getElementById('login-form').addEventListener('keypress', function(event) {
-  if (event.key === 'Enter') {
-    event.preventDefault();
-    let username = document.getElementById("username").value.trim();
-    let password = document.getElementById("password").value.trim();
-
-    if (username !== "" && password === "") {
-      document.getElementById("password").focus();
-    } else {
-      submitForm();
+  <script>
+    function submitForm() {
+      const form = document.getElementById('login-form');
+      form.submit();
     }
-  }
-});
-
-  async function submitForm() {
-    let username = document.getElementById("username").value.trim();
-    let password = document.getElementById("password").value.trim();
-    
-    if (username === "" || password === "") {
-      document.location.href = `/auth/login?err=InvalidCredentials&state=failed`;
-      return;
-    }
-    
-    let encodedUsername = encodeURIComponent(username);
-    let encodedPassword = encodeURIComponent(password);
-    
-    document.location.href = `/auth/login?username=${encodedUsername}&password=${encodedPassword}`;
-  }
-</script>
-
+  </script>
 </body>
 </html>
