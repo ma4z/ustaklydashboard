@@ -71,18 +71,18 @@ const init = async () => {
     next();
   });
 
-  const asciiFilePath = path.join(__dirname, 'ascii.txt');
+  const asciiFilePath = path.join(__dirname, './function/ascii.txt');
 
   // Read the file asynchronously
   fs.readFile(asciiFilePath, 'utf8', (err, data) => {
       if (err) {
-          console.error('Error reading the ASCII art file:', err);
+          console.warn('Error reading the ASCII art file:', err);
           return;
       }
-      console.error(data);
+      console.warn(data);
   });
-  console.warn('Ustakly is Started')
 
+  console.warn(`Started Ustakly with ${process.env.APP_VERSION} version`)
 
   const allRoutes = fs.readdirSync('./app');
   allRoutes.forEach(routeFile => {

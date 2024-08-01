@@ -28,6 +28,21 @@ router.get('/admin', ensureAuthenticated, async (req, res) => {
     }
 });
 
+router.get('/settings', ensureAuthenticated, async (req, res) => {
+    if (!req.user || !req.user.email || !req.user.id) return res.redirect('/login/discord');
+      if (await db.get(`admin-${req.user.email}`) == true) {
+          res.render('settings', {
+              user: req.user, // User info
+              coins: await db.get(`coins-${req.user.email}`), // User's coins
+              req: req, // Request (queries)
+              admin: await db.get(`admin-${req.user.email}`), // Admin status
+              name: process.env.APP_NAME // App name
+          });
+      } else {
+          res.redirect('/dashboard');
+      }
+  });
+
 // Scan eggs & locations
 router.get('/scanimages', ensureAuthenticated, async (req, res) => {
     if (!req.user || !req.user.email || !req.user.id) return res.redirect('/login/discord');
@@ -64,10 +79,10 @@ router.get('/scanimages', ensureAuthenticated, async (req, res) => {
             const allImages = [...existingImages, ...formattedImages];
             fs.writeFileSync('storage/images.json', JSON.stringify(formattedImages, null, 2));
 
-            res.redirect('/admin?success=COMPLETE');
+            res.redirect('/settings?success=COMPLETE');
         } catch (error) {
             console.error(`Error fetching images: ${error}`);
-            res.redirect('/admin?err=FETCH_FAILED');
+            res.redirect('/settings?err=FETCH_FAILED');
         }
     } else {
         res.redirect('/dashboard');
@@ -105,10 +120,10 @@ router.get('/scannodes', ensureAuthenticated, async (req, res) => {
             const allNodes = [...existingNodes, ...formattedNodes];
             fs.writeFileSync('storage/nodes.json', JSON.stringify(allNodes, null, 2));
 
-            res.redirect('/admin?success=COMPLETE');
+            res.redirect('/settings?success=COMPLETE');
         } catch (error) {
             console.error(`Error fetching nodes: ${error}`);
-            res.redirect('/admin?err=FETCH_FAILED');
+            res.redirect('/settings?err=FETCH_FAILED');
         }
     } else {
         res.redirect('/dashboard');

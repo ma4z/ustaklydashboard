@@ -176,8 +176,7 @@
                     let ram = encodeURIComponent(document.getElementById("ram").value);
                     let cpu = encodeURIComponent(document.getElementById("cpu").value);
                     let node = encodeURIComponent(document.getElementById("node").value);
-                    let disk = encodeURIComponent(document.getElementById("disk").value);
-                    document.location.href = `/create?name=${name}&image=${image}&ram=${ram}&cpu=${cpu}&node=${node}&disk=${disk}`;
+                    document.location.href = `/create?name=${name}&image=${image}&ram=${ram}&cpu=${cpu}&node=${node}`;
                   }
                 </script>
               </div>

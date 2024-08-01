@@ -8,7 +8,7 @@
     "Scripts": {
       "Install": [
         {
-          "Uri": "https://download.getbukkit.org/spigot/spigot-1.21.jar",
+          "Uri": "https://download.getbukkit.org/spigot/spigot-{{Version}}.jar",
           "Path": "server.jar"
         },
         {
@@ -24,7 +24,7 @@
     "Meta": {
       "Version": "Skyport Images v2"
     },
-    "Id": "469c4088-625c-4548-ae91-4d9e55269c13"
+    "Id": "96557bcc-73d3-41d4-9029-0bf945dc11c8"
   },
   {
     "Image": "quay.io/skyport/java:21",
@@ -35,7 +35,7 @@
     "Scripts": {
       "Install": [
         {
-          "Uri": "https://papermc.io/api/v2/projects/paper/versions/1.21/builds/48/downloads/paper-1.21-48.jar",
+          "Uri": "https://papermc.io/api/v2/projects/paper/versions/1.21/builds/119/downloads/paper-1.21-119.jar",
           "Path": "server.jar"
         },
         {
@@ -51,7 +51,7 @@
     "Meta": {
       "Version": "Skyport Images v2"
     },
-    "Id": "08f4743f-a865-403e-8a4f-ba82ff366428"
+    "Id": "34aef687-3068-4294-bbed-55d0855f26e4"
   },
   {
     "Image": "quay.io/skyport/python:lts",
@@ -74,13 +74,13 @@
     "Meta": {
       "Version": "Skyport Images v2"
     },
-    "Id": "20ccdb6d-27b7-4f77-923f-580784194589"
+    "Id": "4dd9284c-b5ca-4f80-b5db-c5f6d6853363"
   },
   {
     "Image": "quay.io/skyport/nodejs:lts",
     "Cmd": "",
     "Env": [
-      "START=npm install && node ."
+      "START=npm install && npm start"
     ],
     "Scripts": {
       "Install": [
@@ -97,6 +97,6 @@
     "Meta": {
       "Version": "Skyport Images v2"
     },
-    "Id": "9726891a-347a-4439-8c56-a4475dd91290"
+    "Id": "4d627eee-6232-4661-a97e-01a18e9aa532"
   }
 ]
