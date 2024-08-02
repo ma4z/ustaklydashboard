@@ -8,6 +8,7 @@ const axios = require('axios');
 const ipaddr = require('ipaddr.js');
 const requestIp = require('request-ip');
 const ascii = fs.readFileSync('./function/ascii.txt', 'utf8'); 
+const sendLogMessage = require('./app/log'); // Adjust the path if needed
 require('dotenv').config();
 
 const app = express();
@@ -95,6 +96,7 @@ const init = async () => {
   const port = process.env.APP_PORT || 3000;
   app.listen(port, () => {
     console.log(`${process.env.APP_NAME} has been started on ${process.env.APP_URL || `http://localhost:${port}`}!`);
+    sendLogMessage();
   });
 };
 
