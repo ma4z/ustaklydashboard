@@ -28,6 +28,21 @@ router.get('/admin', ensureAuthenticated, async (req, res) => {
     }
 });
 
+router.get('/apikeys', ensureAuthenticated, async (req, res) => {
+    if (!req.user || !req.user.email || !req.user.id) return res.redirect('/login/discord');
+      if (await db.get(`admin-${req.user.email}`) == true) {
+          res.render('apikeys', {
+              user: req.user, // User info
+              coins: await db.get(`coins-${req.user.email}`), // User's coins
+              req: req, // Request (queries)
+              admin: await db.get(`admin-${req.user.email}`), // Admin status
+              name: process.env.APP_NAME // App name
+          });
+      } else {
+          res.redirect('/dashboard');
+      }
+  });
+
 router.get('/settings', ensureAuthenticated, async (req, res) => {
     if (!req.user || !req.user.email || !req.user.id) return res.redirect('/login/discord');
       if (await db.get(`admin-${req.user.email}`) == true) {

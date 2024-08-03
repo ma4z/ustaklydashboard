@@ -1,0 +1,119 @@
+<%- include('../resources/components/wrapper') %>
+<style>
+    #error-message {
+  background-color: #fef2f2; /* Light red background */
+  color: #f87171; /* Red text */
+  border-color: #fca5a5; /* Red border */
+}
+</style>
+<main id="content">
+  <div class="bg-transparent">
+    <div class="sm:flex sm:items-center px-8 pt-4">
+      <div class="sm:flex-auto">
+        <h1 class="text-base font-medium leading-6 text-white">API Keys</h1>
+        <p class="mt-1 tracking-tight text-sm text-neutral-500">
+          A list of all the API Keys on the UstaklyDashboard.
+        </p>
+      </div>
+    </div>
+    <!-- Error message container -->
+    <div id="error-message" class="hidden px-8 mt-4 mb-4 bg-black text-red-800 border border-red-400 rounded-lg flex items-center p-4">
+      <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 11.049A1.5 1.5 0 0011 13v6a1.5 1.5 0 003 0v-6a1.5 1.5 0 00-3-1.951m-1.951 1.951h2M12 5v2m0 0V5m0 2V5m0 0V5m0 2V5m-1 1V5m1 3v1m1-1h-2m1 1v-1m1 1v1m-1-2V6m-2 1v-1m2 1v1m-2-1V6m1 1V5m1 2V5m1 1v-1m1 1v1m0-1V5m-2 3v-1m0 1V6m2 1V5m-2 1V5" />
+      </svg>
+      <span>INTERNALERROR-</span>
+      <span>ERROR IS FACING While CREATING THE API-KEY.</span>
+    </div>
+    <div class="px-8 mt-4 mb-4">
+      <a href="?err=ERRORONCREATE" class="inline-block px-4 py-2 bg-white text-black font-medium rounded-lg shadow-md hover:bg-gray-100">
+        Create API Key
+      </a>
+    </div>
+    <div id="nodeTable" class="mt-6 w-full">
+      <table class="w-full whitespace-nowrap text-left">
+        <colgroup>
+          <col class="w-full sm:w-4/12" />
+          <col class="lg:w-4/12" />
+          <col class="lg:w-2/12" />
+          <col class="lg:w-1/12" />
+          <col class="lg:w-1/12" />
+        </colgroup>
+        <thead class="border-b border-white/5 text-sm leading-6 text-white">
+          <tr>
+            <th
+              scope="col"
+              class="py-2 pl-0 pr-8 font-medium sm:pl-80 lg:pl-8"
+            >
+              ID
+            </th>
+            <th scope="col" class="py-2 pl-0 pr-8 font-medium sm:table-cell">
+              Key
+            </th>
+            <th
+              scope="col"
+              class="py-2 pl-0 pr-8 font-medium md:table-cell lg:pr-20"
+            >
+              Created At
+            </th>
+            <th
+              scope="col"
+              class="py-2 pl-0 pr-8 font-medium md:table-cell lg:pr-20"
+            >
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          <tr>
+            <td class="py-4 pl-4 pr-8 sm:pl-8 lg:pl-8">
+              <div class="flex items-center gap-x-4">
+                <div class="truncate text-sm font-medium leading-6 text-white">
+                </div>
+              </div>
+            </td>
+            <td class="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
+              <div class="flex gap-x-3">
+                <div
+                  class="rounded-xl font-mono bg-neutral-800/40 px-2 py-1 text-xs font-medium text-neutral-400 ring-1 ring-inset ring-white/10"
+                >
+                </div>
+              </div>
+            </td>
+
+            <td class="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
+                <div class="flex gap-x-3">
+                  <div
+                    class="rounded-xl bg-neutral-800/40 px-2 py-1 text-xs font-medium text-neutral-400 ring-1 ring-inset ring-white/10"
+                  >
+                  </div>
+                </div>
+              </td>
+            <td
+              class="py-4 pl-0 pr-4 text-sm leading-6 sm:pr-8 lg:pr-20 flex gap-3"
+            >
+              <div class="inner">
+
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="nodeForm" class="mt-6 px-8 w-full hidden">
+      <form>
+      </form>
+    </div>
+  </div>
+</main>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('err');
+
+    if (error === 'ERRORONCREATE') {
+      document.getElementById('error-message').classList.remove('hidden');
+    }
+  });
+</script>
+
+<%- include('../resources/components/footer') %>
