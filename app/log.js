@@ -6,7 +6,7 @@ const WEBHOOK_ENABLED = process.env.WEBHOOK_ENABLED === 'true';
 const WEBHOOK_URL = process.env.WEBHOOK_URL;
 
 if (!WEBHOOK_ENABLED || !WEBHOOK_URL) {
-    console.log('Webhook is disabled Skipping it');
+    console.log('Webhook is disabled. Skipping it.');
     module.exports = () => {}; // No-op function if webhook is disabled
     return;
 }
@@ -29,11 +29,19 @@ const embedMessage = {
     ],
 };
 
+// Flag to track if the log message has been sent
+let logMessageSent = false;
+
 // Function to send the embed message
 const sendLogMessage = async () => {
+    if (logMessageSent) {
+        return; // Exit if the message has already been sent
+    }
+
     try {
         await axios.post(WEBHOOK_URL, embedMessage);
         console.log('Log message sent successfully');
+        logMessageSent = true; // Update the flag after sending the message
     } catch (error) {
         console.error('Error sending log message:', error);
     }
@@ -41,3 +49,8 @@ const sendLogMessage = async () => {
 
 // Export the function
 module.exports = sendLogMessage;
+
+// Call the sendLogMessage function to send the startup message only once
+if (require.main === module) {
+    sendLogMessage();
+}

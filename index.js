@@ -8,13 +8,15 @@ const axios = require('axios');
 const ipaddr = require('ipaddr.js');
 const requestIp = require('request-ip');
 const ascii = fs.readFileSync('./function/ascii.txt', 'utf8'); 
-const sendLogMessage = require('./app/log'); // Adjust the path if needed
+const sendLogMessage = require('./app/log.js');
 require('dotenv').config();
 
 const app = express();
 const expressWs = require('express-ws')(app);
 
 const { db } = require('./function/db');
+
+let appName = 'Skyport';
 
 const init = async () => {
   if (process.env.ADMIN_USERS) {
@@ -28,10 +30,12 @@ const init = async () => {
     const response = await axios.get(`${process.env.SKYPORT_URL}/api/name`, {
       headers: { 'x-api-key': process.env.SKYPORT_KEY }
     });
+    appName = response.data.name || 'Skyport';
   } catch (error) {
     console.error('Error fetching Skyport name:', error);
   }
 
+  process.env.APP_NAME = appName;
   app.set('view engine', 'ejs');
   app.set('views', path.join(__dirname, '/resources'));
 
@@ -72,7 +76,7 @@ const init = async () => {
     next();
   });
 
-  const asciiFilePath = path.join(__dirname, './function/ascii.txt');
+const asciiFilePath = path.join(__dirname, './function/ascii.txt');
 
   // Read the file asynchronously
   fs.readFile(asciiFilePath, 'utf8', (err, data) => {
@@ -95,8 +99,7 @@ const init = async () => {
 
   const port = process.env.APP_PORT || 3000;
   app.listen(port, () => {
-    console.log(`${process.env.APP_NAME} has been started on ${process.env.APP_URL || `http://localhost:${port}`}!`);
-    sendLogMessage();
+    console.log(`PalPod has been started on ${process.env.APP_URL || `http://localhost:${port}`}!`);
   });
 };
 

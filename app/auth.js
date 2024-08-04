@@ -47,7 +47,7 @@ async function checkAccount(email, username, id) {
       return;
     } catch (err) {
       // If user does not exist, proceed to create
-      console.log('Creating user...');
+      console.log('User does not exist in Skyport. Creating user...');
     }
 
     // Generate a random password for new user
